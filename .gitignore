@@ -1,0 +1,28 @@
+# Archivos de salida de LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+
+# Archivos de salida
+*.pdf
+*.dvi
+*.ps
+*.eps
+
+# Archivos temporales
+*.tmp
+*.bak
+*.backup
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
