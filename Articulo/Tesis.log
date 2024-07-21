@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.7.21)  21 JUL 2024 15:47
-=======
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.7.21)  21 JUL 2024 15:41
->>>>>>> Stashed changes
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.7.21)  21 JUL 2024 16:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -336,13 +332,8 @@ Package pdftex.def Info: ipn_logo.png  used on input line 17.
 (pdftex.def)             Requested size: 135.89174pt x 175.25961pt.
 [1
 
-<<<<<<< Updated upstream
-{C:/Users/ecamp/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./ipn_logo.p
-ng>] [1] [2
-=======
 {C:/Users/ECG/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./ipn_logo.png
 >] [1] [2
->>>>>>> Stashed changes
 
 ] (Tesis.toc
 LaTeX Info: Redefining \. on input line 1.
@@ -396,33 +387,19 @@ L3 programming layer <2024-01-04>
  ) 
 Here is how much of TeX's memory you used:
  5782 strings out of 474486
-<<<<<<< Updated upstream
- 89372 string characters out of 5753570
-=======
  89356 string characters out of 5753576
->>>>>>> Stashed changes
  1939542 words of memory out of 5000000
  28028 multiletter control sequences out of 15000+600000
  561934 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,5n,65p,1556b,395s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<<<<<<< Updated upstream
- <C:\Users\ecamp\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
-1000.pk><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/
-Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program File
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/font
-s/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmti10.pfb>
-Output written on Tesis.pdf (14 pages, 131867 bytes).
-=======
  <C:\Users\ECG\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm10
 00.pk><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/
 MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/
 type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/
 amsfonts/cm/cmti10.pfb>
-Output written on Tesis.pdf (14 pages, 131846 bytes).
->>>>>>> Stashed changes
+Output written on Tesis.pdf (14 pages, 131871 bytes).
 PDF statistics:
  81 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
