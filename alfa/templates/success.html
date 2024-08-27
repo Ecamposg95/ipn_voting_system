@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEDIP - Plataforma</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.min.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <header class="bg-sky-600 text-white text-center py-4">
+        <h1 class="text-3xl font-bold">Centro de Estudios de Derecho e Investigaciones Parlamentarias</h1>
+        <p class="text-xl">Bienvenido, {{ user_name }}!</p>
+    </header>
+
+    <nav class="bg-gray-800 text-white">
+        <ul class="flex justify-center space-x-4 py-2">
+            <li><a href="#" class="hover:text-yellow-400">Principal</a></li>
+            <li><a href="#" class="hover:text-yellow-400">Investigadores</a></li>
+            <li><a href="#" class="hover:text-yellow-400">Eventos</a></li>
+            <li><a href="#" class="hover:text-yellow-400">Opiniones</a></li>
+            <li><a href="#" class="hover:text-yellow-400">Investigaciones</a></li>
+            <li><a href="#" class="hover:text-yellow-400">Publicaciones</a></li>
+            <li><a href="#" class="hover:text-yellow-400">Catálogos</a></li>
+            <li><a href="#" class="hover:text-yellow-400">Soporte</a></li>
+        </ul>
+    </nav>
+
+    <main class="flex flex-col items-center justify-center h-screen bg-gray-100">
+        <div class="bg-white p-5 rounded-lg shadow-lg text-center">
+            <p class="text-gray-700">El Centro de Estudios de Derecho e Investigaciones Parlamentarias te da la bienvenida a su plataforma. Aquí podrás acceder a todas las secciones y recursos que ofrecemos para apoyar el trabajo legislativo.</p>
+        </div>
+        <button onclick="logout()" class="bg-red-500 text-white text-lg rounded-lg px-6 py-2.5 mt-5">Cerrar Sesión</button>
+    </main>
+    
+    <footer class="bg-gray-800 text-white text-center py-4">
+        <p>&copy; 2024 Centro de Estudios de Derecho e Investigaciones Parlamentarias</p>
+        <p>Palacio Legislativo, 16 de Agosto de 2024</p>
+    </footer>
+
+    <script>
+        function logout() {
+            window.location.href = "/";
+        }
+    </script>
+
+</body>
+
+</html>

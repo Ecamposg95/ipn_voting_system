@@ -1,0 +1,6 @@
+Flask
+face_recognition
+numpy
+Pillow
+opencv-python
+qrcode[pil]
