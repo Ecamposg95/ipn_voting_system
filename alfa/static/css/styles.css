@@ -1,44 +1,107 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #1C1C1C;
+    color: #FFFFFF;
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
     min-height: 100vh;
 }
 
-header, footer {
-    background-color: #333;
-    color: #fff;
+/* Sidebar */
+.sidebar {
+    background-color: #302F4E;
+    width: 250px;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.user-profile {
     text-align: center;
-    padding: 1em 0;
+    margin-bottom: 20px;
 }
 
-header h1, footer p {
+.user-profile img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.sidebar nav ul li {
+    margin: 20px 0;
+}
+
+.sidebar nav ul li a {
+    color: #B0A8C5;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    flex-grow: 1;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #5A56ED;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
     margin: 0;
+    font-size: 24px;
 }
 
-main {
-    flex: 1;
-    padding: 1em;
+.voting-section h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #A349A4;
 }
 
-#video-section, #register-section {
-    margin: 1em 0;
+.candidates-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-#video {
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.candidate-card {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-button {
-    margin-top: 10px;
-    padding: 10px 20px;
+.candidate-card img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+}
+
+.candidate-card p {
+    color: #302F4E;
+    font-weight: bold;
+    margin: 0;
     font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #f0f0f0;
 }

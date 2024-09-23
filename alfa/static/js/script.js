@@ -2,6 +2,7 @@ const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 
+// Acceso a la cámara
 navigator.mediaDevices.getUserMedia({ video: true })
     .then(stream => {
         video.srcObject = stream;
@@ -10,11 +11,13 @@ navigator.mediaDevices.getUserMedia({ video: true })
         console.error("Error accessing the camera: ", error);
     });
 
+// Función para capturar la imagen desde el video
 function capture() {
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
     return canvas.toDataURL('image/jpeg');
 }
 
+// Función para registrar al usuario
 async function register() {
     const name = document.getElementById('name').value;
     const photo = capture();
@@ -38,6 +41,7 @@ async function register() {
     }
 }
 
+// Función para iniciar sesión
 async function login() {
     const photo = capture();
 
@@ -58,4 +62,9 @@ async function login() {
     } catch (error) {
         console.error("Error:", error);
     }
+}
+
+// Función para cerrar sesión
+function logout() {
+    window.location.href = "/logout";
 }

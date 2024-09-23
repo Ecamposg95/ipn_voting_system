@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Votación</title>
+    <title>Votación</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
@@ -18,7 +18,7 @@
         <nav>
             <ul>
                 <li><a href="#">Inicio</a></li>
-                <li><a href="{{ url_for('vote') }}">Votación</a></li> <!-- Redirige a la votación -->
+                <li><a href="{{ url_for('vote') }}">Votación</a></li>
                 <li><a href="#">Datos</a></li>
                 <li><a href="#">Configuración</a></li>
                 <li><a href="/logout">Cerrar sesión</a></li>
@@ -31,29 +31,20 @@
             <h1>&lt;démos/&gt; /IPN_ESIME_ZACATENCO</h1>
         </header>
 
-        <section class="dashboard">
-            <div class="calendar">
-                <div class="month">Noviembre</div>
-                <div class="day">14</div>
-                <div class="weekday">Lunes</div>
-            </div>
-
-            <div class="candidates">
-                <h3>Candidatos</h3>
-                <div class="candidate">
-                    <p>Juan Perez</p>
-                    <p>Lorem ipsum</p>
+        <section class="voting-section">
+            <h2>CANDIDATOS</h2>
+            <div class="candidates-container">
+                <div class="candidate-card">
+                    <img src="{{ url_for('static', filename='images/candidate1.png') }}" alt="Candidate 1">
+                    <p>ING. CARLOS LARA</p>
                 </div>
-                <div class="candidate">
-                    <p>Sofia Marquez</p>
-                    <p>Lorem ipsum</p>
+                <div class="candidate-card">
+                    <img src="{{ url_for('static', filename='images/candidate2.png') }}" alt="Candidate 2">
+                    <p>M.C. JUAN PREZ</p>
                 </div>
-            </div>
-
-            <div class="vote-results">
-                <h3>Votos</h3>
-                <div class="vote-chart">
-                    <!-- Aquí iría la gráfica circular -->
+                <div class="candidate-card">
+                    <img src="{{ url_for('static', filename='images/candidate3.png') }}" alt="Candidate 3">
+                    <p>DRA. MARIA LUISA</p>
                 </div>
             </div>
         </section>
