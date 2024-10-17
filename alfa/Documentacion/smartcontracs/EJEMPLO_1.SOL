@@ -1,0 +1,12 @@
+pragma solidity ^0.8.0;
+
+contract Voting {
+    mapping(address => bool) public hasVoted;
+    uint public totalVotes;
+
+    function vote() public {
+        require(!hasVoted[msg.sender], "Ya has votado.");
+        hasVoted[msg.sender] = true;
+        totalVotes++;
+    }
+}
