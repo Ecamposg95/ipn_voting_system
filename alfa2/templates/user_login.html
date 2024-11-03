@@ -8,24 +8,22 @@
 </head>
 <body>
     <div class="container">
-        <h2>Iniciar Sesión</h2>
+        <h2>Inicio de Sesión de Votante</h2>
         <form id="login-form" onsubmit="event.preventDefault(); login();">
             <label for="login-name">Nombre</label>
-            <input type="text" id="login-name" name="name" placeholder="Ingrese su nombre" required>
+            <input type="text" id="login-name" name="name" required>
 
             <div id="video-container">
-                <label for="login-video">Video</label>
                 <video id="login-video" autoplay></video>
-                <button type="button" class="capture-btn" onclick="captureImage(videoElements.login)">Capturar Imagen</button>
             </div>
 
+            <input type="hidden" id="photo" name="photo">
             <button type="submit" class="button">Iniciar Sesión</button>
         </form>
-
-        <p>¿No tienes una cuenta? <a href="/auth/register">Registrarse</a></p>
+        <a href="{{ url_for('auth.register') }}">¿No tienes cuenta? Regístrate</a>
     </div>
 
-    <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
+    <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

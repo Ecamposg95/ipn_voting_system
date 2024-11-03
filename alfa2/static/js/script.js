@@ -27,30 +27,6 @@ function captureImage(videoElement) {
     return canvas.toDataURL('image/jpeg'); // Devuelve la imagen en base64
 }
 
-// Función para iniciar sesión del usuario
-async function login() {
-    const name = document.getElementById('login-name').value;
-    const photo = captureImage(videoElements.login);
-
-    try {
-        const response = await fetch('/auth/user_login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ name, photo })
-        });
-        const data = await response.json();
-        if (data.success) {
-            window.location.href = '/user/dashboard';
-        } else {
-            alert('No se encontró ninguna coincidencia. Inténtalo de nuevo.');
-        }
-    } catch (error) {
-        console.error("Error:", error);
-    }
-}
-
 // Función para registrar al usuario con reconocimiento facial
 async function register() {
     const name = document.getElementById('register-name').value;
@@ -69,7 +45,31 @@ async function register() {
             alert('Registro exitoso');
             window.location.href = '/auth/user_login'; // Redirigir a login después de registrarse
         } else {
-            alert('Error en el registro');
+            alert(data.message || 'Error en el registro');
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+// Función para iniciar sesión del usuario
+async function login() {
+    const name = document.getElementById('login-name').value;
+    const photo = captureImage(videoElements.login);
+
+    try {
+        const response = await fetch('/auth/user_login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, photo })
+        });
+        const data = await response.json();
+        if (data.success) {
+            window.location.href = '/user/dashboard';
+        } else {
+            alert(data.message || 'Error en la autenticación. Inténtalo de nuevo.');
         }
     } catch (error) {
         console.error("Error:", error);
@@ -102,3 +102,7 @@ function generateOptionsFields() {
         container.appendChild(document.createElement('br'));
     }
 }
+
+// Agregar el evento de inicio de sesión al botón correspondiente en el HTML
+document.getElementById('login-button').addEventListener('click', login);
+document.getElementById('register-button').addEventListener('click', register);

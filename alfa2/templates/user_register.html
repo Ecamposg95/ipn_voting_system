@@ -11,21 +11,19 @@
         <h2>Registro de Votante</h2>
         <form id="register-form" onsubmit="event.preventDefault(); register();">
             <label for="register-name">Nombre</label>
-            <input type="text" id="register-name" name="name" placeholder="Ingrese su nombre" required>
+            <input type="text" id="register-name" name="name" required>
 
             <div id="video-container">
-                <label for="register-video">Video</label>
                 <video id="register-video" autoplay></video>
-                <button type="button" class="capture-btn" onclick="captureImage(videoElements.register)">Capturar Imagen</button>
             </div>
 
-            <button type="submit" class="button">Registrarse</button>
+            <input type="hidden" id="photo" name="photo">
+            <button type="submit" class="button">Registrar</button>
         </form>
-
-        <p>¿Ya tienes una cuenta? <a href="/auth/user_login">Iniciar Sesión</a></p>
+        <a href="{{ url_for('auth.user_login') }}">¿Ya tienes una cuenta? Inicia sesión</a>
     </div>
 
-    <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
+    <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

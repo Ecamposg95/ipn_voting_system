@@ -1,20 +1,35 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <meta charset="utf-8">
-    <title>Panel de Usuario</title>
-    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Dashboard del Usuario</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
+    <div class="navbar">
+        <div class="container">
+            <a href="#" class="navbar-brand">Sistema de Votación</a>
+            <div>
+                <a href="{{ url_for('user.logout') }}" class="button">Cerrar Sesión</a>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
-        <h1>Panel de Usuario</h1>
-        <h2>Votaciones Activas</h2>
-        <ul>
-            {% for votacion in votaciones %}
-                <li><a href="{{ url_for('user.votar', votacion_id=votacion.id) }}">{{ votacion.titulo }}</a></li>
-            {% endfor %}
-        </ul>
-        <p><a href="{{ url_for('auth.logout') }}" class="button">Cerrar Sesión</a></p>
+        <h1>Votaciones Activas</h1>
+        {% if votaciones %}
+            <ul>
+                {% for votacion in votaciones %}
+                    <li>
+                        <h2>{{ votacion.titulo }}</h2>
+                        <p>{{ votacion.descripcion }}</p>
+                        <a href="{{ url_for('user.votar', votacion_id=votacion.id) }}" class="button">Votar</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hay votaciones activas en este momento.</p>
+        {% endif %}
     </div>
 </body>
 </html>
