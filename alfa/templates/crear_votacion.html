@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Crear Votación</title>
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Crear Votación</h1>
+        <form method="POST" action="{{ url_for('crear_votacion') }}">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" required>
+
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" required></textarea>
+
+            <label for="fecha_inicio">Fecha de Inicio:</label>
+            <input type="date" id="fecha_inicio" name="fecha_inicio" required>
+
+            <label for="fecha_fin">Fecha de Fin:</label>
+            <input type="date" id="fecha_fin" name="fecha_fin" required>
+
+            <label for="num_opciones">Número de Opciones (de 2 a 6):</label>
+            <select id="num_opciones" name="num_opciones" onchange="generateOptionsFields()" required>
+                <option value="">Seleccione</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+
+            <div id="opciones_container"></div>
+
+            <button type="submit" class="button">Crear Votación</button>
+        </form>
+    </div>
+    
+    <script>
+        function generateOptionsFields() {
+            const container = document.getElementById('opciones_container');
+            container.innerHTML = '';  // Limpiar campos anteriores
+            const numOptions = document.getElementById('num_opciones').value;
+
+            if (numOptions < 2 || numOptions > 6) {
+                alert("Por favor, seleccione un número de opciones entre 2 y 6.");
+                return;
+            }
+
+            for (let i = 1; i <= numOptions; i++) {
+                const label = document.createElement('label');
+                label.textContent = `Opción ${i}:`;
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = 'opciones[]';
+                input.required = true;
+                input.placeholder = `Ingrese el texto para la opción ${i}`;
+
+                container.appendChild(label);
+                container.appendChild(input);
+            }
+        }
+    </script>
+</body>
+</html>

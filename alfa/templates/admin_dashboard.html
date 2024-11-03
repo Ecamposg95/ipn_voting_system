@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Panel del Administrador</title>
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Panel de Administración</h1>
+        <a href="{{ url_for('crear_votacion') }}" class="button">Crear Nueva Votación</a>
+        <a href="{{ url_for('ver_registros') }}" class="button">Ver Usuarios Registrados</a>
+        <a href="{{ url_for('logout') }}" class="button button-secondary">Cerrar Sesión</a>
+    </div>
+</body>
+</html>
