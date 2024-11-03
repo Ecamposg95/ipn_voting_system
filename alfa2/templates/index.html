@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Inicio - Sistema de Votación Biométrica</title>
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido al Sistema de Votación Biométrica</h1>
+        <div class="button-group">
+            <a href="{{ url_for('auth.admin_login') }}" class="button">Acceder como Administrador</a>
+            <a href="{{ url_for('auth.user_login') }}" class="button">Acceder como Votante</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Resultados de Votación - Usuario</title>
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Resultados de Votación: {{ votacion.titulo }}</h1>
+        <p>{{ votacion.descripcion }}</p>
+        <h2>Opciones y Votos:</h2>
+        <ul>
+            {% for resultado in resultados %}
+                <li>{{ resultado['opcion'] }}: {{ resultado['votos'] }} votos</li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('user_dashboard') }}" class="button button-secondary">Volver al Panel de Usuario</a>
+    </div>
+</body>
+</html>

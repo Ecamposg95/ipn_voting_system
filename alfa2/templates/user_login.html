@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión de Votante</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Iniciar Sesión</h2>
+        <form id="login-form" onsubmit="event.preventDefault(); login();">
+            <label for="login-name">Nombre</label>
+            <input type="text" id="login-name" name="name" placeholder="Ingrese su nombre" required>
+
+            <div id="video-container">
+                <label for="login-video">Video</label>
+                <video id="login-video" autoplay></video>
+                <button type="button" class="capture-btn" onclick="captureImage(videoElements.login)">Capturar Imagen</button>
+            </div>
+
+            <button type="submit" class="button">Iniciar Sesión</button>
+        </form>
+
+        <p>¿No tienes una cuenta? <a href="/auth/register">Registrarse</a></p>
+    </div>
+
+    <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
