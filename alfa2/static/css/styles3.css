@@ -5,12 +5,13 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
-    background: url('{{ url_for("static", filename="img/2151480210.jpg") }}') no-repeat center center fixed;
+    background: url('{{ url_for("static", filename="img/tu-imagen-de-fondo.jpg") }}') no-repeat center center fixed;
     background-size: cover;
     backdrop-filter: brightness(0.5);
     font-family: Arial, sans-serif;
 }
 
+/* Contenedor principal para centrar el formulario */
 .login-container {
     display: flex;
     align-items: center;
@@ -20,6 +21,7 @@ body {
     background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro semi-transparente */
 }
 
+/* Caja del formulario de inicio de sesión */
 .login-box {
     background: #fff;
     padding: 40px;
@@ -39,8 +41,10 @@ body {
 .login-box p {
     font-size: 16px;
     color: #333;
+    margin-bottom: 20px;
 }
 
+/* Estilos de etiquetas y campos de entrada */
 .login-box label {
     display: block;
     font-size: 14px;
@@ -49,8 +53,7 @@ body {
     text-align: left;
 }
 
-.login-box input[type="text"],
-.login-box input[type="password"] {
+.login-box input[type="text"] {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -59,6 +62,22 @@ body {
     box-sizing: border-box;
 }
 
+/* Contenedor para el video de reconocimiento facial */
+#video-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 5px;
+    border: 2px solid #ddd;
+}
+
+#login-video {
+    width: 100%;
+    height: auto;
+}
+
+/* Estilos para el botón de inicio de sesión */
 .button {
     width: 100%;
     padding: 10px;
@@ -69,12 +88,27 @@ body {
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .button:hover {
     background-color: #5a1884;
 }
 
+/* Enlace para registrarse en la parte inferior del formulario */
+.register-link {
+    display: block;
+    margin-top: 20px;
+    color: #6a1b9a;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}
+
+/* Opciones adicionales (recordarme y olvidó su contraseña) */
 .options {
     display: flex;
     justify-content: space-between;
@@ -84,22 +118,18 @@ body {
     margin-top: 15px;
 }
 
+.options label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
 .forgot-password {
     color: #6a1b9a;
     text-decoration: none;
+    font-size: 14px;
 }
 
 .forgot-password:hover {
-    text-decoration: underline;
-}
-
-.back-link {
-    display: block;
-    margin-top: 20px;
-    color: #6a1b9a;
-    text-decoration: none;
-}
-
-.back-link:hover {
     text-decoration: underline;
 }
