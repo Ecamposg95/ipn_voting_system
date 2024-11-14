@@ -30,6 +30,7 @@ function captureImage(videoElement) {
 // Función para registrar al usuario con reconocimiento facial
 async function register() {
     const name = document.getElementById('register-name').value;
+    const address = document.getElementById('address').value;
     const photo = captureImage(videoElements.register);
 
     try {
@@ -38,7 +39,7 @@ async function register() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name, photo })
+            body: JSON.stringify({ name, address, photo })
         });
         const data = await response.json();
         if (response.ok) {
@@ -77,5 +78,5 @@ async function login() {
 }
 
 // Asignar eventos de clic a los botones de registro e inicio de sesión
-document.getElementById('login-button').addEventListener('click', login);
-document.getElementById('register-button').addEventListener('click', register);
+document.getElementById('register-button')?.addEventListener('click', register);
+document.getElementById('login-button')?.addEventListener('click', login);

@@ -4,28 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Votante</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles3.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h2>Registro de Votante</h2>
-        <form id="register-form" onsubmit="event.preventDefault(); register();">
-            <label for="register-name">Nombre</label>
-            <input type="text" id="register-name" name="name" required>
+    <div class="register-container">
+        <div class="register-box">
+            <h2>Registro de Votante</h2>
+            <p>Por favor, registre su nombre y capture su rostro</p>
+            <form id="register-form" onsubmit="event.preventDefault(); register();">
+                <label for="register-name">Nombre:</label>
+                <input type="text" id="register-name" name="name" required placeholder="Ingrese su nombre">
+                
+                <label for="address">Dirección (de Ganache):</label>
+                <input type="text" id="address" name="address" required placeholder="Ingrese su dirección de Ganache">
+                
+                <!-- Contenedor para el video de reconocimiento facial -->
+                <div id="video-container">
+                    <video id="register-video" autoplay></video>
+                </div>
 
-            <!-- Contenedor para el video de reconocimiento facial -->
-            <div id="video-container">
-                <video id="register-video" autoplay></video>
-            </div>
-
-            <input type="hidden" id="photo" name="photo">
-            <button type="submit" class="button">Registrar</button>
-        </form>
-        <!-- Enlace para iniciar sesión si ya tienes cuenta -->
-        <a href="{{ url_for('votante_login') }}">¿Ya tienes una cuenta? Inicia sesión</a>
+                <input type="hidden" id="photo" name="photo">
+                <button type="submit" class="button">Registrar</button>
+            </form>
+            <!-- Enlace para iniciar sesión si ya tiene una cuenta -->
+            <a href="{{ url_for('votante_login') }}" class="login-link">¿Ya tienes cuenta? Inicia sesión</a>
+        </div>
     </div>
 
-    <!-- Canvas para capturar la imagen del rostro -->
+    <!-- Canvas para la captura de la imagen del rostro -->
     <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
     <script src="{{ url_for('static', filename='js/face_recognition.js') }}"></script>
 </body>

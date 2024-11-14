@@ -4,64 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administración</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_styles.css') }}">
 </head>
 <body>
-    <h1>Panel de Administración</h1>
-    <p>Bienvenido, administrador. Aquí puede gestionar los votantes y las votaciones.</p>
-    
-    <h2>Opciones</h2>
-    <ul>
-        <li><a href="{{ url_for('register') }}">Registrar Votante</a></li
-        <li><a href="{{ url_for('end_voting') }}">Finalizar Votación</a></li>
-        <li><a href="{{ url_for('view_results') }}">Ver Resultados</a></li>
-    </ul>
+    <nav class="navbar">
+        <h1>Panel de Administración</h1>
+        <ul class="navbar-menu">
+            <li><a href="{{ url_for('register') }}">Registrar Votante</a></li>
+            <li><a href="{{ url_for('view_voters_page') }}">Ver Votantes</a></li>
+            <li><button onclick="finalizeVoting()">Finalizar Votación</button></li>
+            <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
 
-    <h2>Lista de Votantes</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Dirección</th>
-                <th>Habilitar para Votar</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for votante in votantes %}
-            <tr>
-                <td>{{ votante.name }}</td>
-                <td>{{ votante.address }}</td>
-                <td>
-                    {% if votante.enabled %}
-                        Habilitado
-                    {% else %}
-                        <button onclick="enableVoter('{{ votante.id }}')">Habilitar</button>
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <div id="message"></div>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Lista de Votantes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Dirección</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for votante in votantes %}
+                    <tr>
+                        <td>{{ votante.name }}</td>
+                        <td>{{ votante.address }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Mensaje de confirmación de finalización de votación -->
+        <p id="finalizar-mensaje" style="color: green; font-weight: bold;"></p>
+    </main>
 
     <script>
-        async function enableVoter(voterId) {
-            try {
-                const response = await fetch('/enable_voter', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ voter_id: voterId })  // Asegúrate de que 'voter_id' esté definido y enviado
-                });
-                
-                const data = await response.json();
-                document.getElementById('message').innerText = data.message || data.error;
-                location.reload();  // Recargar para mostrar el cambio
-            } catch (error) {
-                console.error("Error al habilitar el votante:", error);
-            }
+        function finalizeVoting() {
+            fetch('/end_voting', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const messageElement = document.getElementById('finalizar-mensaje');
+                if (data.message) {
+                    messageElement.textContent = data.message;
+                    messageElement.style.color = 'green';
+                } else if (data.error) {
+                    messageElement.textContent = data.error;
+                    messageElement.style.color = 'red';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const messageElement = document.getElementById('finalizar-mensaje');
+                messageElement.textContent = 'Error al finalizar la votación.';
+                messageElement.style.color = 'red';
+            });
         }
     </script>
-    
 </body>
 </html>
