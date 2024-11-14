@@ -1,0 +1,8 @@
+Flask
+Flask-SQLAlchemy
+Flask-WTF
+Werkzeug
+python-dotenv
+face_recognition
+opencv-python
+web3

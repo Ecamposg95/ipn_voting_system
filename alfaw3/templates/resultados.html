@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Resultados de la Votación</title>
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        <h1>Resultados de la Votación: {{ votacion.titulo }}</h1>
+        <p>{{ votacion.descripcion }}</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Opción</th>
+                    <th>Votos</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for resultado in resultados %}
+                    <tr>
+                        <td>{{ resultado.opcion }}</td>
+                        <td>{{ resultado.votos }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('admin.admin_dashboard') }}" class="button button-secondary">Volver al Panel de Administración</a>
+    </div>
+</body>
+</html>

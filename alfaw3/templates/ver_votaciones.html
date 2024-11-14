@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Ver Votaciones</title>
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        <h1>Votaciones Creadas</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Descripción</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Fecha de Fin</th>
+                    <th>Estado</th>
+                    <th>Resultados</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for votacion in votaciones %}
+                    <tr>
+                        <td>{{ votacion.titulo }}</td>
+                        <td>{{ votacion.descripcion }}</td>
+                        <td>{{ votacion.fecha_inicio.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ votacion.fecha_fin.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ 'Activa' if votacion.activa else 'Finalizada' }}</td>
+                        <td><a href="{{ url_for('admin.resultados', votacion_id=votacion.id) }}">Ver Resultados</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

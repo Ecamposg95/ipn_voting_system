@@ -23,13 +23,12 @@
                 <input type="hidden" id="photo" name="photo">
                 <button type="submit" class="button">Iniciar Sesión</button>
             </form>
-            <!-- Enlace para el registro de nuevos votantes -->
-            <a href="{{ url_for('register') }}" class="register-link">¿No tienes cuenta? Regístrate</a>
+            <a href="{{ url_for('votante_register') }}" class="register-link">¿No tienes cuenta? Regístrate</a>
         </div>
     </div>
 
     <!-- Canvas para la captura de la imagen del rostro -->
     <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
-    <script src="{{ url_for('static', filename='js/face_recognition.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

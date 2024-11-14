@@ -1,0 +1,25 @@
+<!-- templates/admin_deploy.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploy Voting Contract</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Deploy Voting Contract</h2>
+        <form action="{{ url_for('deploy_contract') }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="contract">Select Voting Contract (.sol)</label>
+                <input type="file" id="contract" name="contract" accept=".sol" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Deploy Contract</button>
+        </form>
+        {% if contract_address %}
+        <p>Contract deployed at: <strong>{{ contract_address }}</strong></p>
+        {% endif %}
+    </div>
+</body>
+</html>

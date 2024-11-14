@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+</head>
+<body>
+    <h1>Panel de Administración</h1>
+    <p>Bienvenido, administrador. Aquí puede gestionar los votantes y las votaciones.</p>
+    
+    <h2>Opciones</h2>
+    <ul>
+        <li><a href="{{ url_for('register') }}">Registrar Votante</a></li
+        <li><a href="{{ url_for('end_voting') }}">Finalizar Votación</a></li>
+        <li><a href="{{ url_for('view_results') }}">Ver Resultados</a></li>
+    </ul>
+
+    <h2>Lista de Votantes</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Habilitar para Votar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for votante in votantes %}
+            <tr>
+                <td>{{ votante.name }}</td>
+                <td>{{ votante.address }}</td>
+                <td>
+                    {% if votante.enabled %}
+                        Habilitado
+                    {% else %}
+                        <button onclick="enableVoter('{{ votante.id }}')">Habilitar</button>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div id="message"></div>
+
+    <script>
+        async function enableVoter(voterId) {
+            try {
+                const response = await fetch('/enable_voter', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ voter_id: voterId })  // Asegúrate de que 'voter_id' esté definido y enviado
+                });
+                
+                const data = await response.json();
+                document.getElementById('message').innerText = data.message || data.error;
+                location.reload();  // Recargar para mostrar el cambio
+            } catch (error) {
+                console.error("Error al habilitar el votante:", error);
+            }
+        }
+    </script>
+    
+</body>
+</html>

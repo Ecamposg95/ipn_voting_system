@@ -1,0 +1,6 @@
+Flask
+web3
+python-dotenv
+face_recognition
+sqlalchemy
+solcx

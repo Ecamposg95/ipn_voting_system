@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votación Electrónica</title>
+</head>
+<body>
+    <h1>Bienvenido a la Plataforma de Votación Electrónica</h1>
+    <form action="{{ url_for('deploy_contract') }}" method="POST">
+        <button type="submit">Desplegar Contrato</button>
+    </form>
+    <a href="{{ url_for('admin_login') }}">Acceder como Administrador</a>
+    <a href="{{ url_for('votante_login') }}">Acceder como Votante</a>
+</body>
+</html>

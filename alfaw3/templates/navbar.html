@@ -1,0 +1,19 @@
+<nav class="navbar">
+    <div class="container">
+        <a href="{{ url_for('auth.index') }}" class="navbar-brand">Sistema de Votación Biométrica</a>
+        <ul class="navbar-nav">
+            <li><a href="{{ url_for('admin.admin_dashboard') }}">Inicio</a></li>
+            {% if session.get('usuario_id') %}
+                {% if session.get('is_admin') %}
+                    <li><a href="{{ url_for('admin.crear_votacion') }}">Crear Votación</a></li>
+                    <li><a href="{{ url_for('admin.ver_votaciones') }}">Ver Votaciones</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('user.user_dashboard') }}">Ver Votaciones</a></li>
+                {% endif %}
+                <li><a href="{{ url_for('auth.logout') }}">Cerrar Sesión</a></li>
+            {% else %}
+                <li><a href="{{ url_for('auth.login') }}">Iniciar Sesión</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

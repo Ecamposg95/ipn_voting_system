@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Votar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ votacion.titulo }}</h1>
+        <p>{{ votacion.descripcion }}</p>
+
+        <form method="POST" action="{{ url_for('user.votar', votacion_id=votacion.id) }}">
+            {% for opcion in votacion.opciones %}
+                <div>
+                    <input type="radio" name="opcion" value="{{ opcion.id }}" required>
+                    <label>{{ opcion.texto }}</label>
+                </div>
+            {% endfor %}
+            <button type="submit" class="button">Enviar Voto</button>
+        </form>
+    </div>
+</body>
+</html>

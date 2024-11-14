@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Votante</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Registro de Votante</h2>
+        <form id="register-form" onsubmit="event.preventDefault(); register();">
+            <label for="register-name">Nombre</label>
+            <input type="text" id="register-name" name="name" required>
+
+            <!-- Contenedor para el video de reconocimiento facial -->
+            <div id="video-container">
+                <video id="register-video" autoplay></video>
+            </div>
+
+            <input type="hidden" id="photo" name="photo">
+            <button type="submit" class="button">Registrar</button>
+        </form>
+        <!-- Enlace para iniciar sesión si ya tienes cuenta -->
+        <a href="{{ url_for('votante_login') }}">¿Ya tienes una cuenta? Inicia sesión</a>
+    </div>
+
+    <!-- Canvas para capturar la imagen del rostro -->
+    <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
+    <script src="{{ url_for('static', filename='js/face_recognition.js') }}"></script>
+</body>
+</html>
