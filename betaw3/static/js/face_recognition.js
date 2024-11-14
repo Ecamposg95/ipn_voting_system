@@ -14,6 +14,7 @@ function activateCamera(videoElement) {
         })
         .catch(error => {
             console.error("Error al acceder a la cámara: ", error);
+            alert("No se pudo acceder a la cámara.");
         });
 }
 
@@ -31,6 +32,12 @@ function captureImage(videoElement) {
 async function register() {
     const name = document.getElementById('register-name').value;
     const address = document.getElementById('address').value;
+
+    if (!name || !address) {
+        alert("Por favor, completa todos los campos.");
+        return;
+    }
+
     const photo = captureImage(videoElements.register);
 
     try {
@@ -50,12 +57,19 @@ async function register() {
         }
     } catch (error) {
         console.error("Error:", error);
+        alert("Hubo un error en el registro. Inténtalo de nuevo.");
     }
 }
 
 // Función para iniciar sesión del usuario votante
 async function login() {
     const name = document.getElementById('login-name').value;
+
+    if (!name) {
+        alert("Por favor, ingresa tu nombre.");
+        return;
+    }
+
     const photo = captureImage(videoElements.login);
 
     try {
@@ -74,6 +88,7 @@ async function login() {
         }
     } catch (error) {
         console.error("Error:", error);
+        alert("Hubo un error en el inicio de sesión. Inténtalo de nuevo.");
     }
 }
 

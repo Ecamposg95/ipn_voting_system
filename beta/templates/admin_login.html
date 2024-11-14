@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Inicio de Sesión - Administrador</h1>
-    <form method="POST" action="{{ url_for('auth.admin_login') }}">
+    <form method="POST" action="{{ url_for('admin_login') }}">
         <label for="username">Usuario:</label>
         <input type="text" id="username" name="username" required>
         <br>

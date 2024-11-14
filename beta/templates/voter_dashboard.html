@@ -8,10 +8,11 @@
 <body>
     <h1>Panel de Votante</h1>
     <p>Bienvenido, {{ session['voter_name'] }}.</p>
+
     <ul>
-        <li><a href="{{ url_for('voter.view_results') }}">Ver Resultados</a></li>
-        <li><a href="{{ url_for('voter.vote') }}">Votar</a> {% if voting_active %} (Votación Activa) {% else %} (Votación Cerrada) {% endif %}</li>
-        <li><a href="{{ url_for('auth.logout') }}">Cerrar Sesión</a></li>
+        <li><a href="{{ url_for('view_results') }}">Ver Resultados</a></li>
+        <li><a href="{{ url_for('cast_vote') }}">Votar</a> {% if voting_active %} (Votación Activa) {% else %} (Votación Cerrada) {% endif %}</li>
+        <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
     </ul>
 </body>
 </html>

@@ -10,29 +10,29 @@
     <div class="register-container">
         <div class="register-box">
             <h2>Registro de Votante</h2>
-            <form id="register-form" onsubmit="event.preventDefault(); registerVoter();">
+            <p>Por favor, registre su nombre y capture su rostro</p>
+            <form id="register-form" onsubmit="event.preventDefault(); register();">
                 <label for="register-name">Nombre:</label>
                 <input type="text" id="register-name" name="name" required placeholder="Ingrese su nombre">
                 
                 <label for="address">Dirección (de Ganache):</label>
                 <input type="text" id="address" name="address" required placeholder="Ingrese su dirección de Ganache">
                 
+                <!-- Contenedor para el video de reconocimiento facial -->
                 <div id="video-container">
                     <video id="register-video" autoplay></video>
                 </div>
 
-                <!-- Campo oculto para almacenar la imagen capturada -->
                 <input type="hidden" id="photo" name="photo">
                 <button type="submit" class="button">Registrar</button>
             </form>
-            <a href="{{ url_for('auth.voter_login') }}" class="login-link">¿Ya tienes cuenta? Inicia sesión</a>
+            <!-- Enlace para iniciar sesión si ya tiene una cuenta -->
+            <a href="{{ url_for('votante_login') }}" class="login-link">¿Ya tienes cuenta? Inicia sesión</a>
         </div>
     </div>
 
-    <!-- Canvas para capturar la imagen del video -->
+    <!-- Canvas para la captura de la imagen del rostro -->
     <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
-
-    <!-- Archivo de JavaScript externo -->
     <script src="{{ url_for('static', filename='js/face_recognition.js') }}"></script>
 </body>
 </html>

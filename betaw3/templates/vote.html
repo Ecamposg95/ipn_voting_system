@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,22 +7,10 @@
 </head>
 <body>
     <h1>Votación Electrónica</h1>
-    <p>Seleccione una opción para emitir su voto:</p>
-
-    <form method="POST" action="{{ url_for('cast_vote') }}">
-        <label>
-            <input type="radio" name="vote_option" value="opcion_1" required>
-            Opción 1
-        </label><br>
-        <label>
-            <input type="radio" name="vote_option" value="opcion_2" required>
-            Opción 2
-        </label><br>
-        <label>
-            <input type="radio" name="vote_option" value="opcion_3" required>
-            Opción 3
-        </label><br>
-        
+    <form method="POST" action="{{ url_for('voter.cast_vote') }}">
+        <label><input type="radio" name="vote_option" value="opcion_1" required> Opción 1</label><br>
+        <label><input type="radio" name="vote_option" value="opcion_2" required> Opción 2</label><br>
+        <label><input type="radio" name="vote_option" value="opcion_3" required> Opción 3</label><br>
         <button type="submit">Enviar Voto</button>
     </form>
 </body>

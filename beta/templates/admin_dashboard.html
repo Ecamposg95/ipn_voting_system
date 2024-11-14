@@ -10,11 +10,12 @@
     <nav class="navbar">
         <h1>Panel de Administración</h1>
         <ul class="navbar-menu">
-            <li><a href="{{ url_for('admin.register_voter') }}">Registrar Votante</a></li>
-            <li><a href="{{ url_for('admin.view_voters') }}">Ver Votantes</a></li>
+            <li><a href="{{ url_for('register') }}">Registrar Votante</a></li>
+            <li><a href="{{ url_for('view_voters_page') }}">Ver Votantes</a></li>
             <li><button onclick="finalizeVoting()">Finalizar Votación</button></li>
-            <li><a href="{{ url_for('admin.view_results') }}">Ver Resultados</a></li>
-            <li><button onclick="logout()">Cerrar Sesión</button></li>
+            <li><a href="{{ url_for('view_results') }}">Ver Resultados</a></li>
+            <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+
         </ul>
     </nav>
 
@@ -39,13 +40,13 @@
             </table>
         </section>
 
+        <!-- Mensaje de confirmación de finalización de votación -->
         <p id="finalizar-mensaje" style="color: green; font-weight: bold;"></p>
     </main>
 
     <script>
-        // Función para finalizar la votación
         function finalizeVoting() {
-            fetch('{{ url_for("admin.end_voting") }}', {
+            fetch('/end_voting', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -54,29 +55,19 @@
             .then(response => response.json())
             .then(data => {
                 const messageElement = document.getElementById('finalizar-mensaje');
-                messageElement.textContent = data.message || data.error;
-                messageElement.style.color = data.message ? 'green' : 'red';
-            })
-            .catch(error => {
-                document.getElementById('finalizar-mensaje').textContent = 'Error al finalizar la votación.';
-                console.error('Error:', error);
-            });
-        }
-
-        // Función para cerrar la sesión
-        function logout() {
-            fetch('{{ url_for("auth.logout") }}', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
+                if (data.message) {
+                    messageElement.textContent = data.message;
+                    messageElement.style.color = 'green';
+                } else if (data.error) {
+                    messageElement.textContent = data.error;
+                    messageElement.style.color = 'red';
                 }
             })
-            .then(() => {
-                window.location.href = "{{ url_for('general.index') }}";
-            })
             .catch(error => {
-                console.error('Error al cerrar sesión:', error);
-                alert("Hubo un error al cerrar la sesión.");
+                console.error('Error:', error);
+                const messageElement = document.getElementById('finalizar-mensaje');
+                messageElement.textContent = 'Error al finalizar la votación.';
+                messageElement.style.color = 'red';
             });
         }
     </script>

@@ -14,7 +14,6 @@ function activateCamera(videoElement) {
         })
         .catch(error => {
             console.error("Error al acceder a la cámara: ", error);
-            alert("No se pudo acceder a la cámara.");
         });
 }
 
@@ -31,13 +30,6 @@ function captureImage(videoElement) {
 // Función para registrar al usuario con reconocimiento facial
 async function register() {
     const name = document.getElementById('register-name').value;
-    const address = document.getElementById('address').value;
-
-    if (!name || !address) {
-        alert("Por favor, completa todos los campos.");
-        return;
-    }
-
     const photo = captureImage(videoElements.register);
 
     try {
@@ -46,7 +38,7 @@ async function register() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name, address, photo })
+            body: JSON.stringify({ name, photo })
         });
         const data = await response.json();
         if (response.ok) {
@@ -57,19 +49,12 @@ async function register() {
         }
     } catch (error) {
         console.error("Error:", error);
-        alert("Hubo un error en el registro. Inténtalo de nuevo.");
     }
 }
 
 // Función para iniciar sesión del usuario votante
 async function login() {
     const name = document.getElementById('login-name').value;
-
-    if (!name) {
-        alert("Por favor, ingresa tu nombre.");
-        return;
-    }
-
     const photo = captureImage(videoElements.login);
 
     try {
@@ -88,10 +73,9 @@ async function login() {
         }
     } catch (error) {
         console.error("Error:", error);
-        alert("Hubo un error en el inicio de sesión. Inténtalo de nuevo.");
     }
 }
 
 // Asignar eventos de clic a los botones de registro e inicio de sesión
-document.getElementById('register-button')?.addEventListener('click', register);
-document.getElementById('login-button')?.addEventListener('click', login);
+document.getElementById('login-button').addEventListener('click', login);
+document.getElementById('register-button').addEventListener('click', register);

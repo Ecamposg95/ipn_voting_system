@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión del Votante</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Inicio de Sesión del Votante</h2>
+            <form id="login-form" onsubmit="event.preventDefault(); login();">
+                <label for="login-name">Nombre:</label>
+                <input type="text" id="login-name" name="name" required placeholder="Ingrese su nombre">
+                
+                <div id="video-container">
+                    <video id="login-video" autoplay></video>
+                </div>
+
+                <input type="hidden" id="photo" name="photo">
+                <button type="submit" class="button" id="login-button">Iniciar Sesión</button>
+            </form>
+            <!-- Enlace de registro corregido -->
+            <a href="{{ url_for('auth.register') }}" class="register-link">¿No tienes cuenta? Regístrate</a>
+
+        </div>
+    </div>
+
+    <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
+    <script src="{{ url_for('static', filename='js/face_recognition.js') }}"></script>
+</body>
+</html>
