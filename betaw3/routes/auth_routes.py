@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, session, jsonify, request
-from utils.auth import authenticate_admin, authenticate_user, logout_user
+from utils.auth import authenticate_admin, authenticate_user, logout_user, register_user
 from models.voter_model import Voter, db
 
 auth_bp = Blueprint('auth', __name__)
@@ -24,21 +24,24 @@ def admin_login():
 def voter_login():
     """Autentica al votante utilizando reconocimiento facial."""
     if request.method == "POST":
-        data = request.get_json()
-        name = data.get("name")
-        photo = data.get("photo")
-        
-        # Validación de campos requeridos
-        if not name or not photo:
-            return jsonify({"success": False, "message": "Nombre y foto son obligatorios"}), 400
-        
-        # Autenticación mediante reconocimiento facial
-        result = authenticate_user(name, photo)
-        if result["success"]:
-            session["authenticated"] = True
-            session["voter_name"] = name
-            return jsonify({"redirect": url_for("voter.voter_dashboard")})
-        return jsonify(result), 401
+        try:
+            data = request.get_json()
+            name = data.get("name")
+            photo = data.get("photo")
+            
+            # Validación de campos requeridos
+            if not name or not photo:
+                return jsonify({"success": False, "message": "Nombre y foto son obligatorios"}), 400
+            
+            # Autenticación mediante reconocimiento facial
+            result = authenticate_user(name, photo)
+            if result["success"]:
+                session["authenticated"] = True
+                session["voter_name"] = name
+                return jsonify({"redirect": url_for("voter.voter_dashboard")})
+            return jsonify(result), 401
+        except Exception as e:
+            return jsonify({"success": False, "message": f"Error en el inicio de sesión: {str(e)}"}), 500
     
     # Renderizar el formulario de inicio de sesión del votante
     return render_template("voter_login.html")
@@ -47,16 +50,21 @@ def voter_login():
 def register():
     """Permite que los votantes se registren ellos mismos en el sistema."""
     if request.method == "POST":
-        data = request.get_json() or request.form
-        name = data.get("name")
-        address = data.get("address")
-        photo = data.get("photo")  # Imagen en formato base64
-
-        # Validación de entrada
-        if not name or not address or not photo:
-            return jsonify({"error": "Nombre, dirección y foto son obligatorios"}), 400
-
         try:
+            data = request.get_json() or request.form
+            name = data.get("name")
+            address = data.get("address")
+            photo = data.get("photo")  # Imagen en formato base64
+
+            # Validación de entrada
+            if not name or not address or not photo:
+                return jsonify({"error": "Nombre, dirección y foto son obligatorios"}), 400
+            
+            # Registrar usuario con reconocimiento facial
+            result = register_user(name, photo)
+            if "error" in result:
+                return jsonify(result), 400
+            
             # Guardar votante en la base de datos
             new_voter = Voter(name=name, address=address)
             db.session.add(new_voter)
@@ -69,8 +77,9 @@ def register():
     # Renderizar el formulario de registro
     return render_template("register.html")
 
-@auth_bp.route('/logout', methods=["POST"])
+@auth_bp.route('/logout', methods=["GET", "POST"])
 def logout():
     """Cierra la sesión del usuario y redirige a la página principal."""
-    logout_user()
-    return redirect(url_for("general.index"))
+    if request.method == "POST" or request.method == "GET":
+        logout_user()
+        return redirect(url_for("general.index"))

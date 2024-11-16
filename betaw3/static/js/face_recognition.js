@@ -14,7 +14,7 @@ function activateCamera(videoElement) {
         })
         .catch(error => {
             console.error("Error al acceder a la cámara: ", error);
-            alert("No se pudo acceder a la cámara.");
+            alert("No se pudo acceder a la cámara. Asegúrate de que tu dispositivo tenga una cámara funcional.");
         });
 }
 
@@ -24,8 +24,14 @@ if (videoElements.login) activateCamera(videoElements.login);
 
 // Función para capturar la imagen desde el video y devolverla en formato base64
 function captureImage(videoElement) {
-    context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
-    return canvas.toDataURL('image/jpeg'); // Devuelve la imagen en base64
+    try {
+        context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+        return canvas.toDataURL('image/jpeg'); // Devuelve la imagen en base64
+    } catch (error) {
+        console.error("Error al capturar la imagen: ", error);
+        alert("Error al capturar la imagen. Intenta nuevamente.");
+        return null;
+    }
 }
 
 // Función para registrar al usuario con reconocimiento facial
@@ -39,9 +45,10 @@ async function register() {
     }
 
     const photo = captureImage(videoElements.register);
+    if (!photo) return;
 
     try {
-        const response = await fetch('/register', {
+        const response = await fetch('/auth/register', { // Ajuste en la ruta
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -50,14 +57,14 @@ async function register() {
         });
         const data = await response.json();
         if (response.ok) {
-            alert('Registro exitoso');
-            window.location.href = data.redirect;
+            alert('Registro exitoso. Redirigiendo al inicio de sesión.');
+            window.location.href = data.redirect || '/auth/voter_login'; // Ruta por defecto
         } else {
-            alert(data.message || 'Error en el registro');
+            alert(data.error || 'Error en el registro. Inténtalo nuevamente.');
         }
     } catch (error) {
-        console.error("Error:", error);
-        alert("Hubo un error en el registro. Inténtalo de nuevo.");
+        console.error("Error en el registro:", error);
+        alert("Hubo un error en el registro. Intenta nuevamente más tarde.");
     }
 }
 
@@ -71,9 +78,10 @@ async function login() {
     }
 
     const photo = captureImage(videoElements.login);
+    if (!photo) return;
 
     try {
-        const response = await fetch('/votante_login', {
+        const response = await fetch('/auth/voter_login', { // Ajuste en la ruta
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -82,13 +90,14 @@ async function login() {
         });
         const data = await response.json();
         if (response.ok) {
-            window.location.href = data.redirect;
+            alert('Inicio de sesión exitoso.');
+            window.location.href = data.redirect || '/voter/dashboard'; // Ruta por defecto
         } else {
-            alert(data.message || 'Error en la autenticación. Inténtalo de nuevo.');
+            alert(data.error || 'Error en la autenticación. Inténtalo de nuevo.');
         }
     } catch (error) {
-        console.error("Error:", error);
-        alert("Hubo un error en el inicio de sesión. Inténtalo de nuevo.");
+        console.error("Error en el inicio de sesión:", error);
+        alert("Hubo un error en el inicio de sesión. Intenta nuevamente más tarde.");
     }
 }
 

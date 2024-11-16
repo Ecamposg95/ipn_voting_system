@@ -1,0 +1,121 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Header */
+.header {
+    background-color: #0056b3;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+/* Main Container */
+.main-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Welcome Section */
+.welcome-section {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.voter-name {
+    font-weight: bold;
+    color: #0056b3;
+}
+
+/* Actions Section */
+.actions-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.actions-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.actions-list li {
+    text-align: center;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    text-decoration: none;
+    color: white;
+    background-color: #0056b3;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #003d82;
+}
+
+.btn-results {
+    background-color: #28a745; /* Green */
+}
+
+.btn-results:hover {
+    background-color: #1e7e34;
+}
+
+.btn-vote {
+    background-color: #007bff; /* Blue */
+}
+
+.btn-vote:hover {
+    background-color: #0056b3;
+}
+
+.btn-logout {
+    background-color: #dc3545; /* Red */
+}
+
+.btn-logout:hover {
+    background-color: #b21f2d;
+}
+
+/* Voting Status */
+.status {
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .main-container {
+        padding: 1rem;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+}

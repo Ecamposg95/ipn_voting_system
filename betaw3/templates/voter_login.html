@@ -21,9 +21,11 @@
                 <input type="hidden" id="photo" name="photo">
                 <button type="submit" class="button" id="login-button">Iniciar Sesión</button>
             </form>
-            <!-- Enlace de registro corregido -->
+            <!-- Enlace de registro -->
             <a href="{{ url_for('auth.register') }}" class="register-link">¿No tienes cuenta? Regístrate</a>
-
+            <br><br>
+            <!-- Botón para regresar a la página de inicio -->
+            <button onclick="window.location.href='{{ url_for('general.index') }}'" class="button">Regresar al Inicio</button>
         </div>
     </div>
 

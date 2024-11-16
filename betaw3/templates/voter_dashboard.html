@@ -4,14 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Votante</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles_user.css') }}">
 </head>
 <body>
-    <h1>Panel de Votante</h1>
-    <p>Bienvenido, {{ session['voter_name'] }}.</p>
-    <ul>
-        <li><a href="{{ url_for('voter.view_results') }}">Ver Resultados</a></li>
-        <li><a href="{{ url_for('voter.vote') }}">Votar</a> {% if voting_active %} (Votación Activa) {% else %} (Votación Cerrada) {% endif %}</li>
-        <li><a href="{{ url_for('auth.logout') }}">Cerrar Sesión</a></li>
-    </ul>
+    <header class="header">
+        <h1>Panel de Votante</h1>
+    </header>
+    <main class="main-container">
+        <section class="welcome-section">
+            <p>
+                Bienvenido, <span class="voter-name">{{ session.get('voter_name', 'Votante') }}</span>.
+            </p>
+        </section>
+        <section class="actions-section">
+            <ul class="actions-list">
+                <li>
+                    <a class="btn btn-results" href="{{ url_for('voter.view_results') }}">Ver Resultados</a>
+                </li>
+                <li>
+                    <a class="btn btn-vote" href="{{ url_for('voter.cast_vote') }}">Votar</a> 
+                    <span class="status">
+                        {% if voting_active %} 
+                            (Votación Activa) 
+                        {% else %} 
+                            (Votación Cerrada) 
+                        {% endif %}
+                    </span>
+                </li>
+                <li>
+                    <a class="btn btn-logout" href="{{ url_for('auth.logout') }}">Cerrar Sesión</a>
+                </li>
+            </ul>
+        </section>
+    </main>
 </body>
 </html>

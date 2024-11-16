@@ -20,12 +20,16 @@
                 <div id="video-container">
                     <video id="register-video" autoplay></video>
                 </div>
-
+            
                 <!-- Campo oculto para almacenar la imagen capturada -->
                 <input type="hidden" id="photo" name="photo">
-                <button type="submit" class="button">Registrar</button>
+                <button type="submit" id="register-button">Registrar</button>
             </form>
+            
             <a href="{{ url_for('auth.voter_login') }}" class="login-link">¿Ya tienes cuenta? Inicia sesión</a>
+            <br><br>
+            <!-- Botón para regresar a la página de inicio -->
+            <button onclick="window.location.href='{{ url_for('general.index') }}'" class="button">Regresar al Inicio</button>
         </div>
     </div>
 

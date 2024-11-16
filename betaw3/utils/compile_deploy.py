@@ -9,7 +9,13 @@ install_solc("0.8.0")
 
 def compile_contract():
     print("Compilando el contrato...")
-    with open("../contracts/VotingContract.sol", "r") as file:
+    contract_path = os.path.join(os.path.dirname(__file__), "../contracts/VotingContract.sol")
+    
+    if not os.path.exists(contract_path):
+        print(f"Error: No se encontró el archivo {contract_path}.")
+        return None
+
+    with open(contract_path, "r") as file:
         contract_source_code = file.read()
 
     compiled_sol = compile_standard({
@@ -18,15 +24,14 @@ def compile_contract():
         "settings": {"outputSelection": {"*": {"*": ["abi", "metadata", "evm.bytecode", "evm.sourceMap"]}}}
     }, solc_version="0.8.0")
 
-    with open("../contracts/VotingContract.json", "w") as file:
+    output_path = os.path.join(os.path.dirname(__file__), "../contracts/VotingContract.json")
+    with open(output_path, "w") as file:
         json.dump(compiled_sol, file)
-    print("Contrato compilado y guardado en VotingContract.json.")
+    print(f"Contrato compilado y guardado en {output_path}.")
+    return compiled_sol
 
-def deploy_contract(w3):
+def deploy_contract(w3, compiled_contract):
     print("Desplegando el contrato...")
-    with open("../contracts/VotingContract.json", "r") as file:
-        compiled_contract = json.load(file)
-
     abi = compiled_contract["contracts"]["VotingContract.sol"]["VotingContract"]["abi"]
     bytecode = compiled_contract["contracts"]["VotingContract.sol"]["VotingContract"]["evm"]["bytecode"]["object"]
 
@@ -36,11 +41,9 @@ def deploy_contract(w3):
 
     # Crear y enviar la transacción desde la cuenta especificada
     tx_hash = contract.constructor().transact({'from': account})
-    tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)  # Método corregido
+    tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
     print(f"Contrato desplegado en la dirección: {tx_receipt.contractAddress}")
     return tx_receipt.contractAddress
-
-
 
 if __name__ == "__main__":
     # Conéctate a la blockchain
@@ -48,10 +51,11 @@ if __name__ == "__main__":
     print(f"Conectando a la blockchain en {blockchain_url}...")
     w3 = Web3(Web3.HTTPProvider(blockchain_url))
     
-    if w3.is_connected():  # Cambiado a is_connected()
+    if w3.is_connected():
         print("Conexión exitosa a la blockchain.")
-        compile_contract()
-        contract_address = deploy_contract(w3)
-        print(f"Actualiza el archivo .env con CONTRACT_ADDRESS={contract_address}")
+        compiled_contract = compile_contract()
+        if compiled_contract:
+            contract_address = deploy_contract(w3, compiled_contract)
+            print(f"Actualiza el archivo .env con CONTRACT_ADDRESS={contract_address}")
     else:
         print("No se pudo conectar a la blockchain. Verifica la URL.")

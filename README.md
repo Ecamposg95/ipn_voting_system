@@ -27,6 +27,35 @@ Para ejecutar este proyecto, necesitarás tener instalados los siguientes softwa
 - Truffle
 - Ganache
 - Metamask
+- Anaconda
+
+## Software Ides herramientas
+
+- Anaconda
+- Visual Studio
+- Spider
+- Ganache
+- Git Bash
+- Git hub
+- Visual Code
+- WSL
+- CMAKE
+- Build Tools para Visual Studio
+- Remix IDE
+
+
+## Librerias
+
+Flask
+web3
+python-dotenv
+face_recognition
+    dlib
+sqlalchemy
+solcx
+python-dotenv
+numpy
+Pillow
 
 ## Instalación
 
