@@ -1,14 +1,237 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Emmanuel_Campos">
+
+    <!-- Archivos CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/font-awesome/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
+    
+    <title>Sistema de Votación - Bienvenido</title>
 </head>
-<body>
-    <h1>Bienvenido</h1>
-    <p>Por favor, selecciona tu tipo de usuario:</p>
-    <button onclick="window.location.href='{{ url_for('auth.admin_login') }}'">Administrador</button>
-    <button onclick="window.location.href='{{ url_for('auth.voter_login') }}'">Votante</button>
+<body class="has-loading-screen ts-theme-dark">
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="ts-page-wrapper">
+        <div class="container">
+            
+            <!-- BARRA DE NAVEGACIÓN -->
+            <header id="header">
+                <nav class="navbar navbar-dark ts-separate-bg-element">
+                    <a class="navbar-brand" href="#">
+                        <img src="{{ url_for('static', filename='assets/img/logo.png') }}" alt="Logo">
+                    </a>
+                    <button class="navbar-toggler ts-open-side-panel" type="button" onclick="openNav()" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </nav>
+            </header>
+
+            <!-- CONTENIDO PRINCIPAL -->
+            <main id="main-content">
+                <div class="ts-content-wrapper">
+                    <div class="row">
+                        <!-- Título y Descripción -->
+                        <div class="col-md-6">
+                            <h1>Bienvenido al Sistema de Votación Biométrica</h1>
+                            <p>Seleccione su rol para continuar</p>
+                            <a href="{{ url_for('auth.admin_login') }}" class="btn btn-primary">Acceder como Administrador</a>
+                            <a href="{{ url_for('auth.voter_login') }}" class="btn btn-secondary">Acceder como Votante</a>
+                        </div>
+
+                                                <!--Count Down-->
+                                                <div class="col-md-6">
+                                                    <div class="text-center my-4">
+                                                        <div class="ts-count-down" data-date="December 24, 2018 15:03:26"></div>
+                                                        <!--end ts-count-down-->
+                                                    </div>
+                                                </div>
+                                                <!--end col-md-6-->
+
+                    </div>
+                </div>
+            </main>
+
+            <!-- FOOTER -->
+            <footer id="footer">
+                <div class="clearfix py-4">
+                    <div class="float-none float-sm-left">
+                        <div class="ts-social-icons">
+                            <a href="#" class="fab fa-facebook"></a>
+                            <a href="#" class="fab fa-twitter"></a>
+                            <a href="#" class="fab fa-pinterest"></a>
+                            <a href="#" class="fab fa-instagram"></a>
+                        </div>
+                    </div>
+                    <div class="float-none float-sm-right text-left text-sm-right ts-opacity__50">
+                        <small>© 2024 Sistema de Votación web3. Emmanuel Campos Todos los derechos reservados.</small>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- SHAPES EN EL FONDO -->
+        <div class="ts-background ts-shapes-canvas position-fixed ts-separate-bg-element" data-bg-color="#00265f">
+            <div class="ts-background-image ts-animate ts-scale" data-bg-image="{{ url_for('static', filename='assets/img/bg/14.png') }}"></div>
+            <div class="ts-background-image ts-animate ts-bounce" data-bg-image="{{ url_for('static', filename='assets/img/bg/13.png') }}"></div>
+            <div class="ts-background-image ts-animate ts-scale" data-bg-image="{{ url_for('static', filename='assets/img/bg/12.png') }}" data-bg-opacity=".3"></div>
+            <div class="ts-background-image ts-animate ts-scale" data-bg-image="{{ url_for('static', filename='assets/img/bg/11.png') }}"></div>
+            <div class="ts-background-image ts-animate ts-bounce" data-bg-image="{{ url_for('static', filename='assets/img/bg/10.png') }}"></div>
+            <div class="ts-background-image ts-animate ts-bounce" data-bg-image="{{ url_for('static', filename='assets/img/bg/9.png') }}" data-bg-opacity=".8"></div>
+            <div class="ts-background-image ts-animate ts-bounce" data-bg-image="{{ url_for('static', filename='assets/img/bg/8.png') }}" data-bg-opacity=".8"></div>
+            <div class="ts-background-image ts-animate ts-bounce" data-bg-image="{{ url_for('static', filename='assets/img/bg/7.png') }}"></div>
+            <div class="ts-background-image ts-animate ts-bounce" data-bg-image="{{ url_for('static', filename='assets/img/bg/6.png') }}" data-bg-opacity=".8"></div>
+            <div class="ts-background-image ts-animate" data-bg-image="{{ url_for('static', filename='assets/img/bg/5.png') }}" data-bg-opacity=".8"></div>
+            <div class="ts-background-image ts-animate ts-bounce" data-bg-image="{{ url_for('static', filename='assets/img/bg/4.png') }}"></div>
+            <div class="ts-background-image ts-animate ts-bounce" data-bg-image="{{ url_for('static', filename='assets/img/bg/3.png') }}" data-bg-opacity=".8"></div>
+            <div class="ts-background-image ts-animate ts-bounce" data-bg-image="{{ url_for('static', filename='assets/img/bg/2.png') }}"></div>
+            <div class="ts-background-image ts-animate ts-bounce" data-bg-image="{{ url_for('static', filename='assets/img/bg/1.png') }}" data-bg-opacity=".8"></div>
+        </div>
+    </div>
+
+    <!-- PANEL LATERAL DE INFORMACIÓN -->
+
+    <div class="ts-side-panel" data-bg-color="#001330">
+        <a href="#" class="ts-close-side-panel">
+            <i class="far fa-times-circle"></i>
+        </a>
+        <!--end ts-close-side-panel-->
+        <div class="container-fluid">
+            <section>
+                <div class="ts-title">
+                    <h2>Desarrollo</h2>
+                </div>
+                <!--end ts-title-->
+                <p>
+                    Mi proyecto de sistema de votación electrónica representa un avance hacia procesos democráticos más seguros, transparentes y eficientes. A través de tecnologías avanzadas como la blockchain y los contratos inteligentes (smart contracts), buscamos transformar la manera en que se desarrollan las elecciones, abordando tanto los desafíos técnicos como las necesidades sociales y políticas actuales. Esta plataforma es fruto de una exhaustiva investigación y desarrollo dentro del Instituto Politécnico Nacional (IPN), con el objetivo de establecer un nuevo estándar en la confiabilidad y trazabilidad de los sistemas electorales, particularmente en el contexto de las elecciones de 2024 en México.
+                </p>
+                <div class="row">
+                    <div class="col-sm-6 col-xl-4">
+                        <div class="d-flex align-items-center my-3">
+                            <div class="ts-circle__md">
+                                <figure class="ts-background-image" data-bg-image="{{ url_for('static', filename='assets/img/person-03.jpg') }}"></figure>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="mb-0">Emmanuel Campos Genaro</h3>
+                                <h5 class="ts-opacity__50">Estudiante 2014300225</h5>
+                            </div>
+                        </div>
+                        <!--end d-flex-->
+                    </div>
+                    <!--end col-md-4-->
+                    <div class="col-sm-6 col-xl-4">
+                        <div class="d-flex align-items-center my-3">
+                            <div class="ts-circle__md">
+                                <figure class="ts-background-image" data-bg-image="{{ url_for('static', filename='assets/img/person-02.jpg') }}"></figure>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="mb-0">Luis Antonio García Espinosa</h3>
+                                <h5 class="ts-opacity__50">Asesor</h5>
+                            </div>
+                        </div>
+                        <!--end d-flex-->
+                    </div>
+                    <!--end col-md-4-->
+                    <div class="col-sm-6 col-xl-4">
+                        <div class="d-flex align-items-center my-3">
+                            <div class="ts-circle__md">
+                                <figure class="ts-background-image" data-bg-image="{{ url_for('static', filename='assets/img/person-01.jpg') }}"></figure>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="mb-0">Yolanda Victoria Hernández</h3>
+                                <h5 class="ts-opacity__50">Asesora</h5>
+                            </div>
+                        </div>
+                        <!--end d-flex-->
+                    </div>
+                    <!--end col-md-4-->
+                </div>
+                <!--end row-->
+            </section>
+            <!--end section-->
+            <section>
+                <div class="ts-title">
+                    <h2>Características</h2>
+                </div>
+                <!--end ts-title-->
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="assets/img/icon-wallet.png" alt="" class="mw-100 mb-4">
+                        <h3>Automatización de Procesos</h3>
+                        <p>
+                            Nuestro sistema utiliza contratos inteligentes para automatizar cada paso del proceso electoral, desde el registro de votantes hasta el conteo final, garantizando la precisión y eficiencia en cada fase.
+                        </p>
+                    </div>
+                    <!--end col-md-4-->
+                    <div class="col-md-4">
+                        <img src="assets/img/icon-cloud.png" alt="" class="mw-100 mb-4">
+                        <h3>Blockchain Segura</h3>
+                        <p>
+                            Todos los datos de votación se almacenan en una red blockchain pública y segura, proporcionando transparencia e inmutabilidad para asegurar la integridad de cada voto.
+                        </p>
+                    </div>
+                    <!--end col-md-4-->
+                    <div class="col-md-4">
+                        <img src="assets/img/icon-laptop.png" alt="" class="mw-100 mb-4">
+                        <h3>Interfaz Intuitiva y Accesible</h3>
+                        <p>
+                            La plataforma está diseñada para ser intuitiva y accesible, permitiendo que cualquier usuario participe en el proceso de votación desde cualquier dispositivo, de manera sencilla.
+                        </p>
+                    </div>
+                    <!--end col-md-4-->
+                </div>
+                <!--end row-->
+            </section>
+            <!--end section-->
+            <section>
+                <div class="ts-title">
+                    <h2>Vision</h2>
+                </div>
+                <!--end ts-title-->
+                <div class="row">
+                    
+                    <p>
+                        Nuestro objetivo es no solo desarrollar un prototipo de sistema de votación, sino también sentar las bases de una plataforma completa de administración electoral, que pueda aplicarse eventualmente en elecciones a nivel nacional. En el entorno académico de la ESIME Zacatenco, evaluaremos su rendimiento y seguridad, avanzando hacia una plataforma escalable y confiable que respalde la democracia en México.
+                    </p>
+                    <!--end col-xl-4-->
+                    <div class="col-md-12 col-xl-8">
+                        <img src="assets/img/image-01.jpg" alt="" class="mw-100">
+                    </div>
+                    <!--end col-xl-8-->
+                </div>
+                <!--end row-->
+            </section>
+            <!--end section-->
+
+        </div>
+        <!--end container-fluid-->
+    </div>
+    <!--end ts-side-panel-->
+
+
+    <!-- Archivos JavaScript -->
+    <script src="{{ url_for('static', filename='assets/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/jquery.countdown.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/custom.js') }}"></script>
+
+    <!-- Scripts para Abrir y Cerrar el Panel Lateral -->
+    <script>
+        function openNav() {
+            document.getElementById("side-panel").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("side-panel").style.width = "0";
+        }
+    </script>
 </body>
 </html>

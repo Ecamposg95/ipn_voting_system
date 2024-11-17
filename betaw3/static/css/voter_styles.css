@@ -1,0 +1,110 @@
+/* General body styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #2F2643;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container for the login box */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Login box styling */
+.login-box {
+    background: #1c1c1c;
+    border-radius: 10px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+    padding: 20px 30px;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #f0f0f0;
+}
+
+/* Form styling */
+form label {
+    display: block;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background: #2c2c2c;
+    color: #fff;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Video container */
+#video-container {
+    width: 100%;
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 2px solid #8474F8;
+}
+
+#login-video {
+    width: 100%;
+    height: auto;
+}
+
+/* Buttons */
+.button {
+    background: #8474F8;
+    border: none;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.button:hover {
+    background: #564582;
+    color: #fff;
+}
+
+.back-button {
+    background: #f0f0f0;
+    color: #000;
+    margin-top: 10px;
+}
+
+.back-button:hover {
+    background: #ccc;
+    color: #000;
+}
+
+/* Register link */
+.register-link {
+    color: #8474F8;
+    text-decoration: none;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}

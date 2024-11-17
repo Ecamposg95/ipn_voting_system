@@ -4,43 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administración</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_styles_console.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnH1zZ2GtOQa+P76b0e7RZ+1s97Fx9xK1LfWTF41Jptv5WMRgfwBWDkD1O/VY0NE1wy/kjZSw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <nav class="navbar">
-        <h1>Panel de Administración</h1>
-        <ul class="navbar-menu">
-            <li><a href="{{ url_for('admin.register_voter') }}">Registrar Votante</a></li>
-            <li><a href="{{ url_for('admin.view_voters') }}">Ver Votantes</a></li>
-            <li><button onclick="finalizeVoting()">Finalizar Votación</button></li>
-            <li><a href="{{ url_for('admin.view_results') }}">Ver Resultados</a></li>
-            <li><button onclick="logout()">Cerrar Sesión</button></li>
+    <!-- Menú lateral -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Administrador</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="{{ url_for('admin.admin_dashboard') }}" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="{{ url_for('admin.view_results') }}"><i class="fas fa-chart-bar"></i> Ver Resultados</a></li>
+            <li><a href="{{ url_for('admin.register_voter') }}"><i class="fas fa-user-plus"></i> Registro Votante</a></li>
+            <li><a href="{{ url_for('admin.view_voters') }}"><i class="fas fa-users"></i> Ver Votantes</a></li>
+            <li><button onclick="finalizeVoting()"><i class="fas fa-flag-checkered"></i> Finalizar Votación</button></li>
+            <li><button onclick="logout()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button></li>
         </ul>
-    </nav>
+    </div>
 
-    <main>
-        <section>
-            <h2>Lista de Votantes</h2>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Dirección</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for votante in votantes %}
-                    <tr>
-                        <td>{{ votante.name }}</td>
-                        <td>{{ votante.address }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <header>
+            <h1>Panel de Administración</h1>
+        </header>
+
+        <section class="dashboard">
+            <!-- Métricas principales -->
+            <div class="metrics">
+                <div class="metric-card">
+                    <h3>Votantes</h3>
+                    <p>2150</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Votos</h3>
+                    <p>1430</p>
+                </div>
+            </div>
+
+            <!-- Lista de votantes -->
+            <div class="voter-list">
+                <h2>Lista de Votantes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Dirección</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for votante in votantes %}
+                        <tr>
+                            <td>{{ votante.name }}</td>
+                            <td>{{ votante.address }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Consola -->
+            <div class="console-container container">
+                <div class="terminal_toolbar">
+                    <div class="butt">
+                        <button class="btn btn-color"></button>
+                        <button class="btn btn-color"></button>
+                        <button class="btn btn-color"></button>
+                    </div>
+                    <p class="user">127.0.0.1:7545 ~</p>
+                    <button class="add_tab">+</button>
+                </div>
+                <div class="terminal_body">
+                    <div class="terminal_promt">
+                        <span class="terminal_user">admin@VotingContract.sol:</span>
+                        <span class="terminal_location">~</span>
+                        <span class="terminal_bling">$</span>
+                        <span class="terminal_cursor"></span>
+                    </div>
+                </div>
+            </div>
         </section>
-
-        <p id="finalizar-mensaje" style="color: green; font-weight: bold;"></p>
-    </main>
+    </div>
 
     <script>
         // Función para finalizar la votación
