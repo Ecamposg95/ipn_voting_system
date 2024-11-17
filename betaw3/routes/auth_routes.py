@@ -24,27 +24,29 @@ def admin_login():
 def voter_login():
     """Autentica al votante utilizando reconocimiento facial."""
     if request.method == "POST":
-        try:
-            data = request.get_json()
-            name = data.get("name")
-            photo = data.get("photo")
-            
-            # Validación de campos requeridos
-            if not name or not photo:
-                return jsonify({"success": False, "message": "Nombre y foto son obligatorios"}), 400
-            
-            # Autenticación mediante reconocimiento facial
-            result = authenticate_user(name, photo)
-            if result["success"]:
-                session["authenticated"] = True
-                session["voter_name"] = name
-                return jsonify({"redirect": url_for("voter.voter_dashboard")})
-            return jsonify(result), 401
-        except Exception as e:
-            return jsonify({"success": False, "message": f"Error en el inicio de sesión: {str(e)}"}), 500
+        data = request.get_json()
+        name = data.get("name")
+        photo = data.get("photo")
+        
+        # Validación de campos requeridos
+        if not name or not photo:
+            return jsonify({"success": False, "message": "Nombre y foto son obligatorios"}), 400
+        
+        # Autenticación mediante reconocimiento facial
+        result = authenticate_user(name, photo)
+        if result["success"]:
+            session["authenticated"] = True
+            session["voter_name"] = name
+            # Agregar la dirección del votante a la sesión
+            voter = Voter.query.filter_by(name=name).first()
+            if voter:
+                session["voter_address"] = voter.address
+            return jsonify({"redirect": url_for("voter.voter_dashboard")})
+        return jsonify(result), 401
     
     # Renderizar el formulario de inicio de sesión del votante
     return render_template("voter_login.html")
+
 
 @auth_bp.route('/register', methods=["GET", "POST"])
 def register():

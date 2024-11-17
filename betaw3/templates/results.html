@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultados de Votación</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles_admin.css') }}">
 </head>
 <body>
-    <h1>Resultados de Votación</h1>
-    <p>Total de Votos: {{ total_votes }}</p>
-    <a href="{{ url_for('auth.logout') }}">Cerrar Sesión</a>
+    <header>
+        <h1>Resultados de Votación</h1>
+    </header>
+    <main>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% else %}
+            <p>Total de Votos: {{ total_votes }}</p>
+        {% endif %}
+        <a href="{{ url_for('auth.logout') }}" class="btn">Cerrar Sesión</a>
+    </main>
 </body>
 </html>

@@ -68,8 +68,10 @@ def view_results():
         return redirect(url_for("auth.admin_login"))
     
     try:
-        total_votes = blockchain.contract.functions.getTotalVotes().call()
+        # Usar el getter de Solidity para obtener totalVotes
+        total_votes = blockchain.contract.functions.totalVotes().call()
         return render_template("results.html", total_votes=total_votes)
     except Exception as e:
         print(f"Error al obtener los resultados: {e}")  # Log de error en la terminal
         return render_template("results.html", error="No se pudieron cargar los resultados."), 500
+

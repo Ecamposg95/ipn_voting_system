@@ -26,23 +26,24 @@ def cast_vote():
         return redirect(url_for("auth.voter_login"))
 
     if request.method == "POST":
-        vote_option = request.form.get("vote_option")
         voter_address = session.get("voter_address")
         
-        if not vote_option:
-            return jsonify({"error": "Debe seleccionar una opción para votar."}), 400
+        if not voter_address:
+            return render_template("error.html", error="Dirección del votante no encontrada. Por favor, inicia sesión nuevamente.")
         
         try:
             # Registrar el voto en la blockchain
             tx_hash = blockchain.contract.functions.castVote().transact({'from': voter_address})
             blockchain.w3.eth.wait_for_transaction_receipt(tx_hash)
-            return jsonify({"message": "Voto registrado exitosamente."}), 200
+            return render_template("vote_success.html", message="¡Voto registrado exitosamente!")
         except Exception as e:
             print(f"Error al registrar el voto: {e}")
-            return jsonify({"error": f"Error al registrar el voto: {str(e)}"}), 500
+            return render_template("vote_failure.html", error=f"Error al registrar el voto: {str(e)}")
     
     # Renderiza la página de votación
     return render_template("vote.html")
+
+
 
 @voter_bp.route('/results')
 def view_results():
