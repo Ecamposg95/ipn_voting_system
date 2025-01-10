@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Votante</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles3.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/voter_styles.css') }}">
 </head>
 <body>
-    <div class="register-container">
-        <div class="register-box">
+    <div class="login-container">
+        <div class="login-box">
             <h2>Registro de Votante</h2>
             <form id="register-form" onsubmit="event.preventDefault(); registerVoter();">
                 <label for="register-name">Nombre:</label>
@@ -16,20 +17,20 @@
                 
                 <label for="address">Dirección (de Ganache):</label>
                 <input type="text" id="address" name="address" required placeholder="Ingrese su dirección de Ganache">
-                
+
                 <div id="video-container">
                     <video id="register-video" autoplay></video>
                 </div>
-            
+                
                 <!-- Campo oculto para almacenar la imagen capturada -->
                 <input type="hidden" id="photo" name="photo">
-                <button type="submit" id="register-button">Registrar</button>
+                <button type="submit" class="button" id="register-button">Registrar</button>
             </form>
             
-            <a href="{{ url_for('auth.voter_login') }}" class="login-link">¿Ya tienes cuenta? Inicia sesión</a>
+            <a href="{{ url_for('auth.voter_login') }}" class="register-link">¿Ya tienes cuenta? Inicia sesión</a>
             <br><br>
             <!-- Botón para regresar a la página de inicio -->
-            <button onclick="window.location.href='{{ url_for('general.index') }}'" class="button">Regresar al Inicio</button>
+            <button onclick="window.location.href='{{ url_for('general.index') }}'" class="button back-button">Regresar al Inicio</button>
         </div>
     </div>
 

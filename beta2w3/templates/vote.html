@@ -3,15 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Votar</title>
+    <title>Boleta de Votación Electrónica</title>
+    <!-- Archivo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/boleta.css') }}">
 </head>
 <body>
-    <h1>Votación Electrónica</h1>
-    <form method="POST" action="{{ url_for('voter.cast_vote') }}">
-        <label><input type="radio" name="vote_option" value="opcion_1" required> Opción 1</label><br>
-        <label><input type="radio" name="vote_option" value="opcion_2" required> Opción 2</label><br>
-        <label><input type="radio" name="vote_option" value="opcion_3" required> Opción 3</label><br>
-        <button type="submit">Enviar Voto</button>
-    </form>
+    <div class="container">
+        <h1>Boleta de Votación Electrónica</h1>
+        <form method="POST" action="{{ url_for('voter.cast_vote') }}">
+            <div class="options-grid">
+                <label class="option">
+                    <input type="radio" name="vote_option" value="pan" required>
+                    <img src="{{ url_for('static', filename='img/pan.png') }}" alt="PAN">
+                    <span>PAN</span>
+                </label>
+                <label class="option">
+                    <input type="radio" name="vote_option" value="pri" required>
+                    <img src="{{ url_for('static', filename='img/pri.png') }}" alt="PRI">
+                    <span>PRI</span>
+                </label>
+                <label class="option">
+                    <input type="radio" name="vote_option" value="prd" required>
+                    <img src="{{ url_for('static', filename='img/prd.png') }}" alt="PRD">
+                    <span>PRD</span>
+                </label>
+                <label class="option">
+                    <input type="radio" name="vote_option" value="morena" required>
+                    <img src="{{ url_for('static', filename='img/morena.png') }}" alt="MORENA">
+                    <span>MORENA</span>
+                </label>
+                <label class="option">
+                    <input type="radio" name="vote_option" value="mc" required>
+                    <img src="{{ url_for('static', filename='img/mc.png') }}" alt="Movimiento Ciudadano">
+                    <span>Movimiento Ciudadano</span>
+                </label>
+                <label class="option">
+                    <input type="radio" name="vote_option" value="pv" required>
+                    <img src="{{ url_for('static', filename='img/pv.png') }}" alt="Partido Verde">
+                    <span>Partido Verde</span>
+                </label>
+            </div>
+            <button type="submit">Enviar Voto</button>
+        </form>
+    </div>
 </body>
 </html>
